@@ -6,7 +6,7 @@ import { getProduct } from '@/lib/api/catalog';
 import { CatalogError } from '@/components/catalog/catalog-error';
 import { ImageGallery } from '@/components/catalog/image-gallery';
 import { VariantSelector } from '@/components/catalog/variant-selector';
-import { ProductReviews } from '@/features/reviews/product-reviews';
+import ProductReviews from '@/features/reviews/product-reviews';
 export async function generateMetadata({
   params,
 }: {
@@ -80,6 +80,7 @@ export default async function ProductPage({
           </div>
         </section>
       </div>
+      {/* <ProductReviews productId={product.id} /> */}
       <ProductReviews productId={product.id} />
     </main>
   );

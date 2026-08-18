@@ -5,7 +5,7 @@ import { useAuth } from '@/features/auth/auth-provider';
 import { useCart } from '@/features/cart/cart-provider';
 import { formatINR } from '@/lib/format-money';
 import type { Order } from '@/types/order';
-import { DeliveryLocationPicker } from '@/features/location/delivery-location-picker';
+import DeliveryLocationPicker from '@/features/location/delivery-location-picker';
 type Address = {
   id: string;
   label: string;
