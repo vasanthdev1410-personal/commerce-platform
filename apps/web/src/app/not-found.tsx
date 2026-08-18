@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound() { return <main className="mx-auto flex min-h-[65vh] max-w-2xl flex-col items-center justify-center px-4 text-center"><p className="font-semibold text-blue-700">404</p><h1 className="mt-3 text-4xl font-bold">Page not found</h1><p className="mt-4 text-slate-600">The product or category you requested is unavailable.</p><Link href="/products" className="mt-8 rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-800">Browse products</Link></main>; }

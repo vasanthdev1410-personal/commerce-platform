@@ -1,0 +1,2 @@
+import { Module } from '@nestjs/common';import { AuthModule } from '../auth/auth.module';import { PaymentsController } from './payments.controller';import { RazorpayService } from './razorpay.service';import { RazorpayWebhookController } from './razorpay-webhook.controller';
+@Module({imports:[AuthModule],controllers:[PaymentsController,RazorpayWebhookController],providers:[RazorpayService],exports:[RazorpayService]})export class PaymentsModule{}

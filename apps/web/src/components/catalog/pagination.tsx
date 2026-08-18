@@ -1,0 +1,5 @@
+import Link from 'next/link';
+export function Pagination({ page, totalPages, query }: { page: number; totalPages: number; query: Record<string, string | undefined> }) {
+  const href = (nextPage: number) => { const params = new URLSearchParams(); Object.entries(query).forEach(([key,value]) => { if (value) params.set(key,value); }); if (nextPage > 1) params.set('page',String(nextPage)); return `/products?${params}`; };
+  return <nav aria-label="Product pagination" className="mt-10 flex items-center justify-center gap-4"><Link aria-disabled={page <= 1} tabIndex={page <= 1 ? -1 : undefined} href={page <= 1 ? '#' : href(page - 1)} className={`secondary-button ${page <= 1 ? 'pointer-events-none opacity-50' : ''}`}>Previous</Link><span className="text-sm font-medium">Page {page} of {Math.max(totalPages,1)}</span><Link aria-disabled={page >= totalPages} tabIndex={page >= totalPages ? -1 : undefined} href={page >= totalPages ? '#' : href(page + 1)} className={`secondary-button ${page >= totalPages ? 'pointer-events-none opacity-50' : ''}`}>Next</Link></nav>;
+}

@@ -1,0 +1,4 @@
+
+import { Controller,Get,Param,ParseUUIDPipe,Post,Query,UseGuards } from '@nestjs/common';import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';import { CurrentUser } from '../auth/decorators/current-user.decorator';import { AccessTokenGuard } from '../auth/guards/access-token.guard';import type { AuthenticatedUser } from '../auth/auth.types';import { OrdersService } from './orders.service';
+@Controller('orders') @UseGuards(AccessTokenGuard) export class OrdersController{constructor(private readonly orders:OrdersService){}@Get()list(@CurrentUser()u:AuthenticatedUser,@Query()q:PaginationQueryDto){return this.orders.list(u.id,q.page,q.limit)}@Get(':id')get(@CurrentUser()u:AuthenticatedUser,@Param('id',ParseUUIDPipe)id:string){return this.orders.get(u.id,id)}@Post(':id/cancel')cancel(@CurrentUser()u:AuthenticatedUser,@Param('id',ParseUUIDPipe)id:string){return this.orders.cancel(u.id,id)}}
+

@@ -1,0 +1,3 @@
+export interface NormalizedLocation{provider:'google'|'osm';providerPlaceId:string|null;formattedAddress:string;addressLine1:string;addressLine2:string|null;locality:string;district:string|null;state:string;stateCode:string|null;postalCode:string;country:string;countryCode:string;latitude:number;longitude:number}
+export interface LocationSuggestion{provider:'google'|'osm';providerPlaceId:string;description:string}
+export interface LocationProvider{autocomplete(input:string,country:string,latitude?:number,longitude?:number,sessionToken?:string):Promise<LocationSuggestion[]>;geocode(address:string):Promise<NormalizedLocation>;reverseGeocode(latitude:number,longitude:number):Promise<NormalizedLocation>}

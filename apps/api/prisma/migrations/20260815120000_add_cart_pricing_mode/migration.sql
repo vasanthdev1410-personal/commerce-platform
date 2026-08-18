@@ -1,0 +1,2 @@
+ALTER TABLE "Cart"
+ADD COLUMN IF NOT EXISTS "pricingMode" "PricingMode" NOT NULL DEFAULT 'RETAIL';

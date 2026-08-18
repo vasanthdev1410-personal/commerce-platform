@@ -1,0 +1,30 @@
+{
+  "name": "commerce-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @commerce/web --filter @commerce/api dev",
+    "build": "pnpm --filter @commerce/shared build && pnpm --filter @commerce/web build && pnpm --filter @commerce/api build",
+    "lint": "pnpm --recursive lint",
+    "typecheck": "pnpm --recursive typecheck",
+    "db:generate": "pnpm --filter @commerce/api db:generate",
+    "db:validate": "pnpm --filter @commerce/api db:validate",
+    "db:migrate": "pnpm --filter @commerce/api db:migrate",
+    "db:studio": "pnpm --filter @commerce/api db:studio",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "admin:promote": "pnpm --filter @commerce/api admin:promote",
+    "test:auth": "pnpm --filter @commerce/api test:auth",
+    "test:catalog": "pnpm --filter @commerce/api test:catalog",
+    "test:images": "pnpm --filter @commerce/api test:images",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "latest"
+  }
+}

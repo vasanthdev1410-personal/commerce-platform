@@ -1,0 +1,4 @@
+import{Transform,Type}from'class-transformer';import{IsISO31661Alpha2,IsLatitude,IsLongitude,IsNumber,IsOptional,IsString,Length,MaxLength,MinLength}from'class-validator';const trim=({value}:{value:unknown})=>typeof value==='string'?value.trim():value;
+export class AutocompleteQueryDto{@Transform(trim)@IsString()@Length(3,200)input!:string;@IsOptional()@IsISO31661Alpha2()country='IN';@Type(()=>Number)@IsOptional()@IsLatitude()latitude?:number;@Type(()=>Number)@IsOptional()@IsLongitude()longitude?:number;@IsOptional()@IsString()@MaxLength(100)sessionToken?:string;}
+export class GeocodeDto{@Transform(trim)@IsString()@MinLength(5)@MaxLength(500)address!:string;}
+export class ReverseGeocodeDto{@Type(()=>Number)@IsNumber()@IsLatitude()latitude!:number;@Type(()=>Number)@IsNumber()@IsLongitude()longitude!:number;}

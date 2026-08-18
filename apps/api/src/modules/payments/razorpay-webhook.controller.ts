@@ -1,0 +1,2 @@
+import { Body, Controller, Headers, Post, Req } from '@nestjs/common';import type { RawBodyRequest } from '@nestjs/common';import type { Request } from 'express';import { RazorpayService } from './razorpay.service';
+@Controller('webhooks') export class RazorpayWebhookController{constructor(private readonly razorpay:RazorpayService){}@Post('razorpay')handle(@Req()req:RawBodyRequest<Request>,@Headers('x-razorpay-signature')signature:string|undefined,@Body()payload:unknown){return this.razorpay.webhook(req.rawBody,signature,payload)}}

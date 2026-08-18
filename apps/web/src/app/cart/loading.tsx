@@ -1,0 +1,1 @@
+export default function LoadingCart(){return <main className="mx-auto max-w-6xl px-4 py-12"><div className="h-10 w-40 animate-pulse rounded bg-slate-200"/><div className="mt-8 h-32 animate-pulse rounded-2xl bg-slate-200"/><div className="mt-4 h-48 animate-pulse rounded-2xl bg-slate-200"/></main>}
