@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { AdminAuditService } from '../admin-audit/admin-audit.service';
 import type { InventoryQueryDto } from './dto/inventory-query.dto';
@@ -59,10 +59,21 @@ export class InventoryService {
   }
 
   async update(variantId: string, dto: UpdateInventoryDto, adminUserId: string) {
-    if (!(await this.prisma.inventory.findUnique({ where: { variantId }, select: { id: true } }))) {
-      throw new NotFoundException('Inventory not found');
-    }
     return this.prisma.$transaction(async (transaction) => {
+      const rows = await transaction.$queryRaw<
+        Array<{ stockQuantity: number; reservedQuantity: number }>
+      >`SELECT "stockQuantity", "reservedQuantity"
+        FROM "Inventory"
+        WHERE "variantId" = ${variantId}::uuid
+        FOR UPDATE`;
+      const current = rows[0];
+      if (!current) throw new NotFoundException('Inventory not found');
+      const nextStock = dto.stockQuantity ?? current.stockQuantity;
+      if (nextStock < current.reservedQuantity) {
+        throw new ConflictException(
+          'Stock quantity cannot be lower than reserved quantity',
+        );
+      }
       const inventory = await transaction.inventory.update({
         where: { variantId },
         data: {

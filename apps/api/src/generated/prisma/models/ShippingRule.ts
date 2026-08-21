@@ -44,6 +44,7 @@ export type ShippingRuleMinAggregateOutputType = {
   id: string | null
   name: string | null
   countryCode: string | null
+  stateCode: string | null
   pricingMode: $Enums.PricingMode | null
   minSubtotalPaise: number | null
   maxSubtotalPaise: number | null
@@ -58,6 +59,7 @@ export type ShippingRuleMaxAggregateOutputType = {
   id: string | null
   name: string | null
   countryCode: string | null
+  stateCode: string | null
   pricingMode: $Enums.PricingMode | null
   minSubtotalPaise: number | null
   maxSubtotalPaise: number | null
@@ -72,6 +74,7 @@ export type ShippingRuleCountAggregateOutputType = {
   id: number
   name: number
   countryCode: number
+  stateCode: number
   pricingMode: number
   minSubtotalPaise: number
   maxSubtotalPaise: number
@@ -102,6 +105,7 @@ export type ShippingRuleMinAggregateInputType = {
   id?: true
   name?: true
   countryCode?: true
+  stateCode?: true
   pricingMode?: true
   minSubtotalPaise?: true
   maxSubtotalPaise?: true
@@ -116,6 +120,7 @@ export type ShippingRuleMaxAggregateInputType = {
   id?: true
   name?: true
   countryCode?: true
+  stateCode?: true
   pricingMode?: true
   minSubtotalPaise?: true
   maxSubtotalPaise?: true
@@ -130,6 +135,7 @@ export type ShippingRuleCountAggregateInputType = {
   id?: true
   name?: true
   countryCode?: true
+  stateCode?: true
   pricingMode?: true
   minSubtotalPaise?: true
   maxSubtotalPaise?: true
@@ -231,6 +237,7 @@ export type ShippingRuleGroupByOutputType = {
   id: string
   name: string
   countryCode: string
+  stateCode: string | null
   pricingMode: $Enums.PricingMode | null
   minSubtotalPaise: number
   maxSubtotalPaise: number | null
@@ -268,6 +275,7 @@ export type ShippingRuleWhereInput = {
   id?: Prisma.UuidFilter<"ShippingRule"> | string
   name?: Prisma.StringFilter<"ShippingRule"> | string
   countryCode?: Prisma.StringFilter<"ShippingRule"> | string
+  stateCode?: Prisma.StringNullableFilter<"ShippingRule"> | string | null
   pricingMode?: Prisma.EnumPricingModeNullableFilter<"ShippingRule"> | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFilter<"ShippingRule"> | number
   maxSubtotalPaise?: Prisma.IntNullableFilter<"ShippingRule"> | number | null
@@ -282,6 +290,7 @@ export type ShippingRuleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   countryCode?: Prisma.SortOrder
+  stateCode?: Prisma.SortOrderInput | Prisma.SortOrder
   pricingMode?: Prisma.SortOrderInput | Prisma.SortOrder
   minSubtotalPaise?: Prisma.SortOrder
   maxSubtotalPaise?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -299,6 +308,7 @@ export type ShippingRuleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ShippingRuleWhereInput | Prisma.ShippingRuleWhereInput[]
   name?: Prisma.StringFilter<"ShippingRule"> | string
   countryCode?: Prisma.StringFilter<"ShippingRule"> | string
+  stateCode?: Prisma.StringNullableFilter<"ShippingRule"> | string | null
   pricingMode?: Prisma.EnumPricingModeNullableFilter<"ShippingRule"> | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFilter<"ShippingRule"> | number
   maxSubtotalPaise?: Prisma.IntNullableFilter<"ShippingRule"> | number | null
@@ -313,6 +323,7 @@ export type ShippingRuleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   countryCode?: Prisma.SortOrder
+  stateCode?: Prisma.SortOrderInput | Prisma.SortOrder
   pricingMode?: Prisma.SortOrderInput | Prisma.SortOrder
   minSubtotalPaise?: Prisma.SortOrder
   maxSubtotalPaise?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -335,6 +346,7 @@ export type ShippingRuleScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"ShippingRule"> | string
   name?: Prisma.StringWithAggregatesFilter<"ShippingRule"> | string
   countryCode?: Prisma.StringWithAggregatesFilter<"ShippingRule"> | string
+  stateCode?: Prisma.StringNullableWithAggregatesFilter<"ShippingRule"> | string | null
   pricingMode?: Prisma.EnumPricingModeNullableWithAggregatesFilter<"ShippingRule"> | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntWithAggregatesFilter<"ShippingRule"> | number
   maxSubtotalPaise?: Prisma.IntNullableWithAggregatesFilter<"ShippingRule"> | number | null
@@ -349,6 +361,7 @@ export type ShippingRuleCreateInput = {
   id?: string
   name: string
   countryCode?: string
+  stateCode?: string | null
   pricingMode?: $Enums.PricingMode | null
   minSubtotalPaise?: number
   maxSubtotalPaise?: number | null
@@ -363,6 +376,7 @@ export type ShippingRuleUncheckedCreateInput = {
   id?: string
   name: string
   countryCode?: string
+  stateCode?: string | null
   pricingMode?: $Enums.PricingMode | null
   minSubtotalPaise?: number
   maxSubtotalPaise?: number | null
@@ -377,6 +391,7 @@ export type ShippingRuleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  stateCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pricingMode?: Prisma.NullableEnumPricingModeFieldUpdateOperationsInput | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFieldUpdateOperationsInput | number
   maxSubtotalPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -391,6 +406,7 @@ export type ShippingRuleUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  stateCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pricingMode?: Prisma.NullableEnumPricingModeFieldUpdateOperationsInput | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFieldUpdateOperationsInput | number
   maxSubtotalPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -405,6 +421,7 @@ export type ShippingRuleCreateManyInput = {
   id?: string
   name: string
   countryCode?: string
+  stateCode?: string | null
   pricingMode?: $Enums.PricingMode | null
   minSubtotalPaise?: number
   maxSubtotalPaise?: number | null
@@ -419,6 +436,7 @@ export type ShippingRuleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  stateCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pricingMode?: Prisma.NullableEnumPricingModeFieldUpdateOperationsInput | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFieldUpdateOperationsInput | number
   maxSubtotalPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -433,6 +451,7 @@ export type ShippingRuleUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  stateCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pricingMode?: Prisma.NullableEnumPricingModeFieldUpdateOperationsInput | $Enums.PricingMode | null
   minSubtotalPaise?: Prisma.IntFieldUpdateOperationsInput | number
   maxSubtotalPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -447,6 +466,7 @@ export type ShippingRuleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   countryCode?: Prisma.SortOrder
+  stateCode?: Prisma.SortOrder
   pricingMode?: Prisma.SortOrder
   minSubtotalPaise?: Prisma.SortOrder
   maxSubtotalPaise?: Prisma.SortOrder
@@ -468,6 +488,7 @@ export type ShippingRuleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   countryCode?: Prisma.SortOrder
+  stateCode?: Prisma.SortOrder
   pricingMode?: Prisma.SortOrder
   minSubtotalPaise?: Prisma.SortOrder
   maxSubtotalPaise?: Prisma.SortOrder
@@ -482,6 +503,7 @@ export type ShippingRuleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   countryCode?: Prisma.SortOrder
+  stateCode?: Prisma.SortOrder
   pricingMode?: Prisma.SortOrder
   minSubtotalPaise?: Prisma.SortOrder
   maxSubtotalPaise?: Prisma.SortOrder
@@ -509,6 +531,7 @@ export type ShippingRuleSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   name?: boolean
   countryCode?: boolean
+  stateCode?: boolean
   pricingMode?: boolean
   minSubtotalPaise?: boolean
   maxSubtotalPaise?: boolean
@@ -523,6 +546,7 @@ export type ShippingRuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   countryCode?: boolean
+  stateCode?: boolean
   pricingMode?: boolean
   minSubtotalPaise?: boolean
   maxSubtotalPaise?: boolean
@@ -537,6 +561,7 @@ export type ShippingRuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   countryCode?: boolean
+  stateCode?: boolean
   pricingMode?: boolean
   minSubtotalPaise?: boolean
   maxSubtotalPaise?: boolean
@@ -551,6 +576,7 @@ export type ShippingRuleSelectScalar = {
   id?: boolean
   name?: boolean
   countryCode?: boolean
+  stateCode?: boolean
   pricingMode?: boolean
   minSubtotalPaise?: boolean
   maxSubtotalPaise?: boolean
@@ -561,7 +587,7 @@ export type ShippingRuleSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ShippingRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "countryCode" | "pricingMode" | "minSubtotalPaise" | "maxSubtotalPaise" | "shippingPaise" | "priority" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["shippingRule"]>
+export type ShippingRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "countryCode" | "stateCode" | "pricingMode" | "minSubtotalPaise" | "maxSubtotalPaise" | "shippingPaise" | "priority" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["shippingRule"]>
 
 export type $ShippingRulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShippingRule"
@@ -570,6 +596,7 @@ export type $ShippingRulePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     name: string
     countryCode: string
+    stateCode: string | null
     pricingMode: $Enums.PricingMode | null
     minSubtotalPaise: number
     maxSubtotalPaise: number | null
@@ -1004,6 +1031,7 @@ export interface ShippingRuleFieldRefs {
   readonly id: Prisma.FieldRef<"ShippingRule", 'String'>
   readonly name: Prisma.FieldRef<"ShippingRule", 'String'>
   readonly countryCode: Prisma.FieldRef<"ShippingRule", 'String'>
+  readonly stateCode: Prisma.FieldRef<"ShippingRule", 'String'>
   readonly pricingMode: Prisma.FieldRef<"ShippingRule", 'PricingMode'>
   readonly minSubtotalPaise: Prisma.FieldRef<"ShippingRule", 'Int'>
   readonly maxSubtotalPaise: Prisma.FieldRef<"ShippingRule", 'Int'>

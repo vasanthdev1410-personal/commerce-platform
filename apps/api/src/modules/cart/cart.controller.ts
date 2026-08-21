@@ -1,12 +1,14 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
 import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import type { AuthenticatedUser } from '../auth/auth.types';
 import { CartService } from './cart.service';
 import { AddCartItemDto } from './dto/add-cart-item.dto';
 import { UpdateCartItemDto } from './dto/update-cart-item.dto';
 import { UpdatePricingModeDto } from './dto/update-pricing-mode.dto';
-@Controller('cart') @UseGuards(AccessTokenGuard)
+@Controller('cart') @UseGuards(AccessTokenGuard, RolesGuard) @Roles('CUSTOMER')
 export class CartController {
   constructor(private readonly cart: CartService) {}
   @Get() get(@CurrentUser() user: AuthenticatedUser) { return this.cart.get(user.id); }

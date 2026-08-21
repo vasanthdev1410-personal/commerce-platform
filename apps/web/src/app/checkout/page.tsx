@@ -1,11 +1,11 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
 import { useAuth } from '@/features/auth/auth-provider';
 import { useCart } from '@/features/cart/cart-provider';
 import { formatINR } from '@/lib/format-money';
 import type { Order } from '@/types/order';
-import DeliveryLocationPicker from '@/features/location/delivery-location-picker';
+import DeliveryLocationPicker, { type SelectedDeliveryLocation } from '@/features/location/delivery-location-picker';
 type Address = {
   id: string;
   label: string;
@@ -18,8 +18,10 @@ export default function CheckoutPage() {
     { cart, refresh } = useCart();
   const [addresses, setAddresses] = useState<Address[]>([]),
     [addressId, setAddressId] = useState(''),
+    [location, setLocation] = useState<SelectedDeliveryLocation | null>(null),
     [error, setError] = useState<string | null>(null),
     [pending, setPending] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {
     if (!isLoading && !isAuthenticated) router.replace('/login');
     if (!isLoading && isAuthenticated)
@@ -30,6 +32,22 @@ export default function CheckoutPage() {
         },
       );
   }, [authenticatedRequest, isAuthenticated, isLoading, router]);
+  const selectLocation = useCallback((selected: SelectedDeliveryLocation) => {
+    setLocation(selected);
+    const form = formRef.current;
+    if (!form) return;
+    const values: Record<string, string> = {
+      addressLine1: selected.addressLine1,
+      addressLine2: selected.addressLine2 ?? '',
+      city: selected.locality,
+      state: selected.state,
+      postalCode: selected.postalCode,
+    };
+    for (const [name, value] of Object.entries(values)) {
+      const input = form.elements.namedItem(name);
+      if (input instanceof HTMLInputElement) input.value = value;
+    }
+  }, []);
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPending(true);
@@ -47,13 +65,19 @@ export default function CheckoutPage() {
               state: f.get('state'),
               postalCode: f.get('postalCode'),
               countryCode: 'IN',
-              ...(f.get('latitude') && f.get('longitude')
+              ...(location
                 ? {
-                    latitude: Number(f.get('latitude')),
-                    longitude: Number(f.get('longitude')),
-                    locationProvider: f.get('locationProvider'),
-                    providerPlaceId: f.get('providerPlaceId') || undefined,
-                    formattedAddress: f.get('formattedAddress') || undefined,
+                    addressLine1: location.addressLine1,
+                    addressLine2: location.addressLine2 || undefined,
+                    city: location.locality,
+                    state: location.state,
+                    postalCode: location.postalCode,
+                    countryCode: location.countryCode,
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    locationProvider: location.provider,
+                    providerPlaceId: location.providerPlaceId || undefined,
+                    formattedAddress: location.formattedAddress,
                   }
                 : {}),
             },
@@ -88,7 +112,7 @@ export default function CheckoutPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12">
       <h1 className="text-4xl font-bold">Checkout</h1>
-      <form onSubmit={submit} className="mt-8 grid gap-8 lg:grid-cols-2">
+      <form ref={formRef} onSubmit={submit} className="mt-8 grid gap-8 lg:grid-cols-2">
         <section className="rounded-2xl border bg-white p-6">
           <h2 className="text-xl font-semibold">Shipping address</h2>
           {addresses.length > 0 && (
@@ -130,7 +154,7 @@ export default function CheckoutPage() {
               ))}
             </div>
           )}
-          {!addressId && <DeliveryLocationPicker />}
+          {!addressId && <DeliveryLocationPicker onLocationSelected={selectLocation} />}
         </section>
         <section className="rounded-2xl border bg-white p-6">
           <h2 className="text-xl font-semibold">Order Summary</h2>

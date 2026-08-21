@@ -351,7 +351,14 @@ export const OrderItemScalarFieldEnum = {
   sku: 'sku',
   quantity: 'quantity',
   unitPricePaise: 'unitPricePaise',
-  totalPricePaise: 'totalPricePaise'
+  totalPricePaise: 'totalPricePaise',
+  hsnCode: 'hsnCode',
+  taxRateBasisPoints: 'taxRateBasisPoints',
+  taxablePaise: 'taxablePaise',
+  taxPaise: 'taxPaise',
+  cgstPaise: 'cgstPaise',
+  sgstPaise: 'sgstPaise',
+  igstPaise: 'igstPaise'
 } as const
 
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
@@ -361,6 +368,7 @@ export const ShippingRuleScalarFieldEnum = {
   id: 'id',
   name: 'name',
   countryCode: 'countryCode',
+  stateCode: 'stateCode',
   pricingMode: 'pricingMode',
   minSubtotalPaise: 'minSubtotalPaise',
   maxSubtotalPaise: 'maxSubtotalPaise',
@@ -504,6 +512,8 @@ export const PaymentRefundScalarFieldEnum = {
   reason: 'reason',
   status: 'status',
   idempotencyKey: 'idempotencyKey',
+  providerStatus: 'providerStatus',
+  lastReconciledAt: 'lastReconciledAt',
   requestedByAdminId: 'requestedByAdminId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

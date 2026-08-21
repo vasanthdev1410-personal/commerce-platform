@@ -50,6 +50,7 @@ enum PricingMode {
 enum PaymentStatus {
   PENDING
   AUTHORIZED
+  CAPTURED_REQUIRES_ACTION
   PAID
   FAILED
   REFUNDED
@@ -392,6 +393,13 @@ model OrderItem {
   quantity        Int
   unitPricePaise  Int
   totalPricePaise Int
+  hsnCode          String?
+  taxRateBasisPoints Int?
+  taxablePaise     Int?
+  taxPaise         Int?
+  cgstPaise        Int?
+  sgstPaise        Int?
+  igstPaise        Int?
   order           Order          @relation(fields: [orderId], references: [id], onDelete: Restrict)
   variant         ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
   returnItems     ReturnItem[]
@@ -404,6 +412,7 @@ model ShippingRule {
   id               String      @id @default(uuid()) @db.Uuid
   name             String
   countryCode      String      @default("IN") @db.Char(2)
+  stateCode        String?     @db.VarChar(3)
   pricingMode      PricingMode?
   minSubtotalPaise Int         @default(0)
   maxSubtotalPaise Int?
@@ -413,7 +422,7 @@ model ShippingRule {
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
 
-  @@index([countryCode, pricingMode, isActive, priority])
+  @@index([countryCode, stateCode, pricingMode, isActive, priority])
 }
 
 model Shipment {
@@ -543,8 +552,8 @@ model Payment {
   id                String        @id @default(uuid()) @db.Uuid
   orderId           String        @unique @db.Uuid
   provider          String?
-  providerOrderId   String?
-  providerPaymentId String?
+  providerOrderId   String?       @unique
+  providerPaymentId String?       @unique
   status            PaymentStatus @default(PENDING)
   amountPaise       Int
   createdAt         DateTime      @default(now())
@@ -563,6 +572,8 @@ model PaymentRefund {
   reason                 String?
   status                 PaymentRefundStatus @default(PENDING)
   idempotencyKey         String
+  providerStatus         String?
+  lastReconciledAt       DateTime?
   requestedByAdminId     String              @db.Uuid
   createdAt              DateTime            @default(now())
   updatedAt              DateTime            @updatedAt

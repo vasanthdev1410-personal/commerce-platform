@@ -42,6 +42,8 @@ export type PaymentRefundMinAggregateOutputType = {
   reason: string | null
   status: $Enums.PaymentRefundStatus | null
   idempotencyKey: string | null
+  providerStatus: string | null
+  lastReconciledAt: Date | null
   requestedByAdminId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -55,6 +57,8 @@ export type PaymentRefundMaxAggregateOutputType = {
   reason: string | null
   status: $Enums.PaymentRefundStatus | null
   idempotencyKey: string | null
+  providerStatus: string | null
+  lastReconciledAt: Date | null
   requestedByAdminId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -68,6 +72,8 @@ export type PaymentRefundCountAggregateOutputType = {
   reason: number
   status: number
   idempotencyKey: number
+  providerStatus: number
+  lastReconciledAt: number
   requestedByAdminId: number
   createdAt: number
   updatedAt: number
@@ -91,6 +97,8 @@ export type PaymentRefundMinAggregateInputType = {
   reason?: true
   status?: true
   idempotencyKey?: true
+  providerStatus?: true
+  lastReconciledAt?: true
   requestedByAdminId?: true
   createdAt?: true
   updatedAt?: true
@@ -104,6 +112,8 @@ export type PaymentRefundMaxAggregateInputType = {
   reason?: true
   status?: true
   idempotencyKey?: true
+  providerStatus?: true
+  lastReconciledAt?: true
   requestedByAdminId?: true
   createdAt?: true
   updatedAt?: true
@@ -117,6 +127,8 @@ export type PaymentRefundCountAggregateInputType = {
   reason?: true
   status?: true
   idempotencyKey?: true
+  providerStatus?: true
+  lastReconciledAt?: true
   requestedByAdminId?: true
   createdAt?: true
   updatedAt?: true
@@ -217,6 +229,8 @@ export type PaymentRefundGroupByOutputType = {
   reason: string | null
   status: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus: string | null
+  lastReconciledAt: Date | null
   requestedByAdminId: string
   createdAt: Date
   updatedAt: Date
@@ -253,6 +267,8 @@ export type PaymentRefundWhereInput = {
   reason?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
   status?: Prisma.EnumPaymentRefundStatusFilter<"PaymentRefund"> | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFilter<"PaymentRefund"> | string
+  providerStatus?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
+  lastReconciledAt?: Prisma.DateTimeNullableFilter<"PaymentRefund"> | Date | string | null
   requestedByAdminId?: Prisma.UuidFilter<"PaymentRefund"> | string
   createdAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
@@ -268,6 +284,8 @@ export type PaymentRefundOrderByWithRelationInput = {
   reason?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastReconciledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   requestedByAdminId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -287,6 +305,8 @@ export type PaymentRefundWhereUniqueInput = Prisma.AtLeast<{
   reason?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
   status?: Prisma.EnumPaymentRefundStatusFilter<"PaymentRefund"> | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFilter<"PaymentRefund"> | string
+  providerStatus?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
+  lastReconciledAt?: Prisma.DateTimeNullableFilter<"PaymentRefund"> | Date | string | null
   requestedByAdminId?: Prisma.UuidFilter<"PaymentRefund"> | string
   createdAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
@@ -302,6 +322,8 @@ export type PaymentRefundOrderByWithAggregationInput = {
   reason?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastReconciledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   requestedByAdminId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -323,6 +345,8 @@ export type PaymentRefundScalarWhereWithAggregatesInput = {
   reason?: Prisma.StringNullableWithAggregatesFilter<"PaymentRefund"> | string | null
   status?: Prisma.EnumPaymentRefundStatusWithAggregatesFilter<"PaymentRefund"> | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringWithAggregatesFilter<"PaymentRefund"> | string
+  providerStatus?: Prisma.StringNullableWithAggregatesFilter<"PaymentRefund"> | string | null
+  lastReconciledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PaymentRefund"> | Date | string | null
   requestedByAdminId?: Prisma.UuidWithAggregatesFilter<"PaymentRefund"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PaymentRefund"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PaymentRefund"> | Date | string
@@ -335,6 +359,8 @@ export type PaymentRefundCreateInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payment: Prisma.PaymentCreateNestedOneWithoutRefundsInput
@@ -349,6 +375,8 @@ export type PaymentRefundUncheckedCreateInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   requestedByAdminId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -361,6 +389,8 @@ export type PaymentRefundUpdateInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUpdateOneRequiredWithoutRefundsNestedInput
@@ -375,6 +405,8 @@ export type PaymentRefundUncheckedUpdateInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requestedByAdminId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -388,6 +420,8 @@ export type PaymentRefundCreateManyInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   requestedByAdminId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -400,6 +434,8 @@ export type PaymentRefundUpdateManyMutationInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -412,6 +448,8 @@ export type PaymentRefundUncheckedUpdateManyInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requestedByAdminId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -440,6 +478,8 @@ export type PaymentRefundCountOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   status?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
+  lastReconciledAt?: Prisma.SortOrder
   requestedByAdminId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -457,6 +497,8 @@ export type PaymentRefundMaxOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   status?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
+  lastReconciledAt?: Prisma.SortOrder
   requestedByAdminId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -470,6 +512,8 @@ export type PaymentRefundMinOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   status?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
+  lastReconciledAt?: Prisma.SortOrder
   requestedByAdminId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -574,6 +618,8 @@ export type PaymentRefundCreateWithoutRequestedByAdminInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payment: Prisma.PaymentCreateNestedOneWithoutRefundsInput
@@ -587,6 +633,8 @@ export type PaymentRefundUncheckedCreateWithoutRequestedByAdminInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -628,6 +676,8 @@ export type PaymentRefundScalarWhereInput = {
   reason?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
   status?: Prisma.EnumPaymentRefundStatusFilter<"PaymentRefund"> | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFilter<"PaymentRefund"> | string
+  providerStatus?: Prisma.StringNullableFilter<"PaymentRefund"> | string | null
+  lastReconciledAt?: Prisma.DateTimeNullableFilter<"PaymentRefund"> | Date | string | null
   requestedByAdminId?: Prisma.UuidFilter<"PaymentRefund"> | string
   createdAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PaymentRefund"> | Date | string
@@ -640,6 +690,8 @@ export type PaymentRefundCreateWithoutPaymentInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   requestedByAdmin: Prisma.UserCreateNestedOneWithoutRequestedRefundsInput
@@ -652,6 +704,8 @@ export type PaymentRefundUncheckedCreateWithoutPaymentInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   requestedByAdminId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -691,6 +745,8 @@ export type PaymentRefundCreateManyRequestedByAdminInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -702,6 +758,8 @@ export type PaymentRefundUpdateWithoutRequestedByAdminInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUpdateOneRequiredWithoutRefundsNestedInput
@@ -715,6 +773,8 @@ export type PaymentRefundUncheckedUpdateWithoutRequestedByAdminInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -727,6 +787,8 @@ export type PaymentRefundUncheckedUpdateManyWithoutRequestedByAdminInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -738,6 +800,8 @@ export type PaymentRefundCreateManyPaymentInput = {
   reason?: string | null
   status?: $Enums.PaymentRefundStatus
   idempotencyKey: string
+  providerStatus?: string | null
+  lastReconciledAt?: Date | string | null
   requestedByAdminId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -750,6 +814,8 @@ export type PaymentRefundUpdateWithoutPaymentInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestedByAdmin?: Prisma.UserUpdateOneRequiredWithoutRequestedRefundsNestedInput
@@ -762,6 +828,8 @@ export type PaymentRefundUncheckedUpdateWithoutPaymentInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requestedByAdminId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -774,6 +842,8 @@ export type PaymentRefundUncheckedUpdateManyWithoutPaymentInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPaymentRefundStatusFieldUpdateOperationsInput | $Enums.PaymentRefundStatus
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastReconciledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requestedByAdminId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -789,6 +859,8 @@ export type PaymentRefundSelect<ExtArgs extends runtime.Types.Extensions.Interna
   reason?: boolean
   status?: boolean
   idempotencyKey?: boolean
+  providerStatus?: boolean
+  lastReconciledAt?: boolean
   requestedByAdminId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -804,6 +876,8 @@ export type PaymentRefundSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   reason?: boolean
   status?: boolean
   idempotencyKey?: boolean
+  providerStatus?: boolean
+  lastReconciledAt?: boolean
   requestedByAdminId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -819,6 +893,8 @@ export type PaymentRefundSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   reason?: boolean
   status?: boolean
   idempotencyKey?: boolean
+  providerStatus?: boolean
+  lastReconciledAt?: boolean
   requestedByAdminId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -834,12 +910,14 @@ export type PaymentRefundSelectScalar = {
   reason?: boolean
   status?: boolean
   idempotencyKey?: boolean
+  providerStatus?: boolean
+  lastReconciledAt?: boolean
   requestedByAdminId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PaymentRefundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "paymentId" | "providerRefundId" | "amountPaise" | "reason" | "status" | "idempotencyKey" | "requestedByAdminId" | "createdAt" | "updatedAt", ExtArgs["result"]["paymentRefund"]>
+export type PaymentRefundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "paymentId" | "providerRefundId" | "amountPaise" | "reason" | "status" | "idempotencyKey" | "providerStatus" | "lastReconciledAt" | "requestedByAdminId" | "createdAt" | "updatedAt", ExtArgs["result"]["paymentRefund"]>
 export type PaymentRefundInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
   requestedByAdmin?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -867,6 +945,8 @@ export type $PaymentRefundPayload<ExtArgs extends runtime.Types.Extensions.Inter
     reason: string | null
     status: $Enums.PaymentRefundStatus
     idempotencyKey: string
+    providerStatus: string | null
+    lastReconciledAt: Date | null
     requestedByAdminId: string
     createdAt: Date
     updatedAt: Date
@@ -1302,6 +1382,8 @@ export interface PaymentRefundFieldRefs {
   readonly reason: Prisma.FieldRef<"PaymentRefund", 'String'>
   readonly status: Prisma.FieldRef<"PaymentRefund", 'PaymentRefundStatus'>
   readonly idempotencyKey: Prisma.FieldRef<"PaymentRefund", 'String'>
+  readonly providerStatus: Prisma.FieldRef<"PaymentRefund", 'String'>
+  readonly lastReconciledAt: Prisma.FieldRef<"PaymentRefund", 'DateTime'>
   readonly requestedByAdminId: Prisma.FieldRef<"PaymentRefund", 'String'>
   readonly createdAt: Prisma.FieldRef<"PaymentRefund", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PaymentRefund", 'DateTime'>

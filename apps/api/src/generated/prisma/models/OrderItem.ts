@@ -30,12 +30,24 @@ export type OrderItemAvgAggregateOutputType = {
   quantity: number | null
   unitPricePaise: number | null
   totalPricePaise: number | null
+  taxRateBasisPoints: number | null
+  taxablePaise: number | null
+  taxPaise: number | null
+  cgstPaise: number | null
+  sgstPaise: number | null
+  igstPaise: number | null
 }
 
 export type OrderItemSumAggregateOutputType = {
   quantity: number | null
   unitPricePaise: number | null
   totalPricePaise: number | null
+  taxRateBasisPoints: number | null
+  taxablePaise: number | null
+  taxPaise: number | null
+  cgstPaise: number | null
+  sgstPaise: number | null
+  igstPaise: number | null
 }
 
 export type OrderItemMinAggregateOutputType = {
@@ -48,6 +60,13 @@ export type OrderItemMinAggregateOutputType = {
   quantity: number | null
   unitPricePaise: number | null
   totalPricePaise: number | null
+  hsnCode: string | null
+  taxRateBasisPoints: number | null
+  taxablePaise: number | null
+  taxPaise: number | null
+  cgstPaise: number | null
+  sgstPaise: number | null
+  igstPaise: number | null
 }
 
 export type OrderItemMaxAggregateOutputType = {
@@ -60,6 +79,13 @@ export type OrderItemMaxAggregateOutputType = {
   quantity: number | null
   unitPricePaise: number | null
   totalPricePaise: number | null
+  hsnCode: string | null
+  taxRateBasisPoints: number | null
+  taxablePaise: number | null
+  taxPaise: number | null
+  cgstPaise: number | null
+  sgstPaise: number | null
+  igstPaise: number | null
 }
 
 export type OrderItemCountAggregateOutputType = {
@@ -72,6 +98,13 @@ export type OrderItemCountAggregateOutputType = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode: number
+  taxRateBasisPoints: number
+  taxablePaise: number
+  taxPaise: number
+  cgstPaise: number
+  sgstPaise: number
+  igstPaise: number
   _all: number
 }
 
@@ -80,12 +113,24 @@ export type OrderItemAvgAggregateInputType = {
   quantity?: true
   unitPricePaise?: true
   totalPricePaise?: true
+  taxRateBasisPoints?: true
+  taxablePaise?: true
+  taxPaise?: true
+  cgstPaise?: true
+  sgstPaise?: true
+  igstPaise?: true
 }
 
 export type OrderItemSumAggregateInputType = {
   quantity?: true
   unitPricePaise?: true
   totalPricePaise?: true
+  taxRateBasisPoints?: true
+  taxablePaise?: true
+  taxPaise?: true
+  cgstPaise?: true
+  sgstPaise?: true
+  igstPaise?: true
 }
 
 export type OrderItemMinAggregateInputType = {
@@ -98,6 +143,13 @@ export type OrderItemMinAggregateInputType = {
   quantity?: true
   unitPricePaise?: true
   totalPricePaise?: true
+  hsnCode?: true
+  taxRateBasisPoints?: true
+  taxablePaise?: true
+  taxPaise?: true
+  cgstPaise?: true
+  sgstPaise?: true
+  igstPaise?: true
 }
 
 export type OrderItemMaxAggregateInputType = {
@@ -110,6 +162,13 @@ export type OrderItemMaxAggregateInputType = {
   quantity?: true
   unitPricePaise?: true
   totalPricePaise?: true
+  hsnCode?: true
+  taxRateBasisPoints?: true
+  taxablePaise?: true
+  taxPaise?: true
+  cgstPaise?: true
+  sgstPaise?: true
+  igstPaise?: true
 }
 
 export type OrderItemCountAggregateInputType = {
@@ -122,6 +181,13 @@ export type OrderItemCountAggregateInputType = {
   quantity?: true
   unitPricePaise?: true
   totalPricePaise?: true
+  hsnCode?: true
+  taxRateBasisPoints?: true
+  taxablePaise?: true
+  taxPaise?: true
+  cgstPaise?: true
+  sgstPaise?: true
+  igstPaise?: true
   _all?: true
 }
 
@@ -221,6 +287,13 @@ export type OrderItemGroupByOutputType = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode: string | null
+  taxRateBasisPoints: number | null
+  taxablePaise: number | null
+  taxPaise: number | null
+  cgstPaise: number | null
+  sgstPaise: number | null
+  igstPaise: number | null
   _count: OrderItemCountAggregateOutputType | null
   _avg: OrderItemAvgAggregateOutputType | null
   _sum: OrderItemSumAggregateOutputType | null
@@ -256,6 +329,13 @@ export type OrderItemWhereInput = {
   quantity?: Prisma.IntFilter<"OrderItem"> | number
   unitPricePaise?: Prisma.IntFilter<"OrderItem"> | number
   totalPricePaise?: Prisma.IntFilter<"OrderItem"> | number
+  hsnCode?: Prisma.StringNullableFilter<"OrderItem"> | string | null
+  taxRateBasisPoints?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxablePaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  cgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  sgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  igstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   variant?: Prisma.XOR<Prisma.ProductVariantScalarRelationFilter, Prisma.ProductVariantWhereInput>
   returnItems?: Prisma.ReturnItemListRelationFilter
@@ -271,6 +351,13 @@ export type OrderItemOrderByWithRelationInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  hsnCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  igstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.OrderOrderByWithRelationInput
   variant?: Prisma.ProductVariantOrderByWithRelationInput
   returnItems?: Prisma.ReturnItemOrderByRelationAggregateInput
@@ -289,6 +376,13 @@ export type OrderItemWhereUniqueInput = Prisma.AtLeast<{
   quantity?: Prisma.IntFilter<"OrderItem"> | number
   unitPricePaise?: Prisma.IntFilter<"OrderItem"> | number
   totalPricePaise?: Prisma.IntFilter<"OrderItem"> | number
+  hsnCode?: Prisma.StringNullableFilter<"OrderItem"> | string | null
+  taxRateBasisPoints?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxablePaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  cgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  sgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  igstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   variant?: Prisma.XOR<Prisma.ProductVariantScalarRelationFilter, Prisma.ProductVariantWhereInput>
   returnItems?: Prisma.ReturnItemListRelationFilter
@@ -304,6 +398,13 @@ export type OrderItemOrderByWithAggregationInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  hsnCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
+  igstPaise?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrderItemCountOrderByAggregateInput
   _avg?: Prisma.OrderItemAvgOrderByAggregateInput
   _max?: Prisma.OrderItemMaxOrderByAggregateInput
@@ -324,6 +425,13 @@ export type OrderItemScalarWhereWithAggregatesInput = {
   quantity?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
   unitPricePaise?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
   totalPricePaise?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
+  hsnCode?: Prisma.StringNullableWithAggregatesFilter<"OrderItem"> | string | null
+  taxRateBasisPoints?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
+  taxablePaise?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
+  taxPaise?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
+  cgstPaise?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
+  sgstPaise?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
+  igstPaise?: Prisma.IntNullableWithAggregatesFilter<"OrderItem"> | number | null
 }
 
 export type OrderItemCreateInput = {
@@ -334,6 +442,13 @@ export type OrderItemCreateInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
   variant: Prisma.ProductVariantCreateNestedOneWithoutOrderItemsInput
   returnItems?: Prisma.ReturnItemCreateNestedManyWithoutOrderItemInput
@@ -349,6 +464,13 @@ export type OrderItemUncheckedCreateInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   returnItems?: Prisma.ReturnItemUncheckedCreateNestedManyWithoutOrderItemInput
 }
 
@@ -360,6 +482,13 @@ export type OrderItemUpdateInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.ProductVariantUpdateOneRequiredWithoutOrderItemsNestedInput
   returnItems?: Prisma.ReturnItemUpdateManyWithoutOrderItemNestedInput
@@ -375,6 +504,13 @@ export type OrderItemUncheckedUpdateInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   returnItems?: Prisma.ReturnItemUncheckedUpdateManyWithoutOrderItemNestedInput
 }
 
@@ -388,6 +524,13 @@ export type OrderItemCreateManyInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
 }
 
 export type OrderItemUpdateManyMutationInput = {
@@ -398,6 +541,13 @@ export type OrderItemUpdateManyMutationInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type OrderItemUncheckedUpdateManyInput = {
@@ -410,6 +560,13 @@ export type OrderItemUncheckedUpdateManyInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type OrderItemListRelationFilter = {
@@ -432,12 +589,25 @@ export type OrderItemCountOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  hsnCode?: Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrder
+  taxPaise?: Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrder
+  igstPaise?: Prisma.SortOrder
 }
 
 export type OrderItemAvgOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrder
+  taxPaise?: Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrder
+  igstPaise?: Prisma.SortOrder
 }
 
 export type OrderItemMaxOrderByAggregateInput = {
@@ -450,6 +620,13 @@ export type OrderItemMaxOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  hsnCode?: Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrder
+  taxPaise?: Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrder
+  igstPaise?: Prisma.SortOrder
 }
 
 export type OrderItemMinOrderByAggregateInput = {
@@ -462,12 +639,25 @@ export type OrderItemMinOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  hsnCode?: Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrder
+  taxPaise?: Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrder
+  igstPaise?: Prisma.SortOrder
 }
 
 export type OrderItemSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPricePaise?: Prisma.SortOrder
   totalPricePaise?: Prisma.SortOrder
+  taxRateBasisPoints?: Prisma.SortOrder
+  taxablePaise?: Prisma.SortOrder
+  taxPaise?: Prisma.SortOrder
+  cgstPaise?: Prisma.SortOrder
+  sgstPaise?: Prisma.SortOrder
+  igstPaise?: Prisma.SortOrder
 }
 
 export type OrderItemScalarRelationFilter = {
@@ -581,6 +771,13 @@ export type OrderItemCreateWithoutVariantInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
   returnItems?: Prisma.ReturnItemCreateNestedManyWithoutOrderItemInput
 }
@@ -594,6 +791,13 @@ export type OrderItemUncheckedCreateWithoutVariantInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   returnItems?: Prisma.ReturnItemUncheckedCreateNestedManyWithoutOrderItemInput
 }
 
@@ -636,6 +840,13 @@ export type OrderItemScalarWhereInput = {
   quantity?: Prisma.IntFilter<"OrderItem"> | number
   unitPricePaise?: Prisma.IntFilter<"OrderItem"> | number
   totalPricePaise?: Prisma.IntFilter<"OrderItem"> | number
+  hsnCode?: Prisma.StringNullableFilter<"OrderItem"> | string | null
+  taxRateBasisPoints?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxablePaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  taxPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  cgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  sgstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
+  igstPaise?: Prisma.IntNullableFilter<"OrderItem"> | number | null
 }
 
 export type OrderItemCreateWithoutOrderInput = {
@@ -646,6 +857,13 @@ export type OrderItemCreateWithoutOrderInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   variant: Prisma.ProductVariantCreateNestedOneWithoutOrderItemsInput
   returnItems?: Prisma.ReturnItemCreateNestedManyWithoutOrderItemInput
 }
@@ -659,6 +877,13 @@ export type OrderItemUncheckedCreateWithoutOrderInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   returnItems?: Prisma.ReturnItemUncheckedCreateNestedManyWithoutOrderItemInput
 }
 
@@ -696,6 +921,13 @@ export type OrderItemCreateWithoutReturnItemsInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
   variant: Prisma.ProductVariantCreateNestedOneWithoutOrderItemsInput
 }
@@ -710,6 +942,13 @@ export type OrderItemUncheckedCreateWithoutReturnItemsInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
 }
 
 export type OrderItemCreateOrConnectWithoutReturnItemsInput = {
@@ -736,6 +975,13 @@ export type OrderItemUpdateWithoutReturnItemsInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.ProductVariantUpdateOneRequiredWithoutOrderItemsNestedInput
 }
@@ -750,6 +996,13 @@ export type OrderItemUncheckedUpdateWithoutReturnItemsInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type OrderItemCreateManyVariantInput = {
@@ -761,6 +1014,13 @@ export type OrderItemCreateManyVariantInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
 }
 
 export type OrderItemUpdateWithoutVariantInput = {
@@ -771,6 +1031,13 @@ export type OrderItemUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
   returnItems?: Prisma.ReturnItemUpdateManyWithoutOrderItemNestedInput
 }
@@ -784,6 +1051,13 @@ export type OrderItemUncheckedUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   returnItems?: Prisma.ReturnItemUncheckedUpdateManyWithoutOrderItemNestedInput
 }
 
@@ -796,6 +1070,13 @@ export type OrderItemUncheckedUpdateManyWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type OrderItemCreateManyOrderInput = {
@@ -807,6 +1088,13 @@ export type OrderItemCreateManyOrderInput = {
   quantity: number
   unitPricePaise: number
   totalPricePaise: number
+  hsnCode?: string | null
+  taxRateBasisPoints?: number | null
+  taxablePaise?: number | null
+  taxPaise?: number | null
+  cgstPaise?: number | null
+  sgstPaise?: number | null
+  igstPaise?: number | null
 }
 
 export type OrderItemUpdateWithoutOrderInput = {
@@ -817,6 +1105,13 @@ export type OrderItemUpdateWithoutOrderInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   variant?: Prisma.ProductVariantUpdateOneRequiredWithoutOrderItemsNestedInput
   returnItems?: Prisma.ReturnItemUpdateManyWithoutOrderItemNestedInput
 }
@@ -830,6 +1125,13 @@ export type OrderItemUncheckedUpdateWithoutOrderInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   returnItems?: Prisma.ReturnItemUncheckedUpdateManyWithoutOrderItemNestedInput
 }
 
@@ -842,6 +1144,13 @@ export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
   totalPricePaise?: Prisma.IntFieldUpdateOperationsInput | number
+  hsnCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxRateBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxablePaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  taxPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sgstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  igstPaise?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -885,6 +1194,13 @@ export type OrderItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   quantity?: boolean
   unitPricePaise?: boolean
   totalPricePaise?: boolean
+  hsnCode?: boolean
+  taxRateBasisPoints?: boolean
+  taxablePaise?: boolean
+  taxPaise?: boolean
+  cgstPaise?: boolean
+  sgstPaise?: boolean
+  igstPaise?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.ProductVariantDefaultArgs<ExtArgs>
   returnItems?: boolean | Prisma.OrderItem$returnItemsArgs<ExtArgs>
@@ -901,6 +1217,13 @@ export type OrderItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   quantity?: boolean
   unitPricePaise?: boolean
   totalPricePaise?: boolean
+  hsnCode?: boolean
+  taxRateBasisPoints?: boolean
+  taxablePaise?: boolean
+  taxPaise?: boolean
+  cgstPaise?: boolean
+  sgstPaise?: boolean
+  igstPaise?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.ProductVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["orderItem"]>
@@ -915,6 +1238,13 @@ export type OrderItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   quantity?: boolean
   unitPricePaise?: boolean
   totalPricePaise?: boolean
+  hsnCode?: boolean
+  taxRateBasisPoints?: boolean
+  taxablePaise?: boolean
+  taxPaise?: boolean
+  cgstPaise?: boolean
+  sgstPaise?: boolean
+  igstPaise?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.ProductVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["orderItem"]>
@@ -929,9 +1259,16 @@ export type OrderItemSelectScalar = {
   quantity?: boolean
   unitPricePaise?: boolean
   totalPricePaise?: boolean
+  hsnCode?: boolean
+  taxRateBasisPoints?: boolean
+  taxablePaise?: boolean
+  taxPaise?: boolean
+  cgstPaise?: boolean
+  sgstPaise?: boolean
+  igstPaise?: boolean
 }
 
-export type OrderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "variantId" | "productName" | "variantName" | "sku" | "quantity" | "unitPricePaise" | "totalPricePaise", ExtArgs["result"]["orderItem"]>
+export type OrderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "variantId" | "productName" | "variantName" | "sku" | "quantity" | "unitPricePaise" | "totalPricePaise" | "hsnCode" | "taxRateBasisPoints" | "taxablePaise" | "taxPaise" | "cgstPaise" | "sgstPaise" | "igstPaise", ExtArgs["result"]["orderItem"]>
 export type OrderItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.ProductVariantDefaultArgs<ExtArgs>
@@ -964,6 +1301,13 @@ export type $OrderItemPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     quantity: number
     unitPricePaise: number
     totalPricePaise: number
+    hsnCode: string | null
+    taxRateBasisPoints: number | null
+    taxablePaise: number | null
+    taxPaise: number | null
+    cgstPaise: number | null
+    sgstPaise: number | null
+    igstPaise: number | null
   }, ExtArgs["result"]["orderItem"]>
   composites: {}
 }
@@ -1399,6 +1743,13 @@ export interface OrderItemFieldRefs {
   readonly quantity: Prisma.FieldRef<"OrderItem", 'Int'>
   readonly unitPricePaise: Prisma.FieldRef<"OrderItem", 'Int'>
   readonly totalPricePaise: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly hsnCode: Prisma.FieldRef<"OrderItem", 'String'>
+  readonly taxRateBasisPoints: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly taxablePaise: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly taxPaise: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly cgstPaise: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly sgstPaise: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly igstPaise: Prisma.FieldRef<"OrderItem", 'Int'>
 }
     
 

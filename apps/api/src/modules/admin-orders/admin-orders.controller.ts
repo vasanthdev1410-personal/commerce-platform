@@ -1,4 +1,70 @@
-import { Body, Controller, Get, Headers, Param, ParseUUIDPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';import { Roles } from '../auth/decorators/roles.decorator';import { AccessTokenGuard } from '../auth/guards/access-token.guard';import { RolesGuard } from '../auth/guards/roles.guard';import type { AuthenticatedUser } from '../auth/auth.types';import { AdminOrdersService } from './admin-orders.service';import { AdminOrderQueryDto, AdminPaymentQueryDto, RefundPaymentDto, UpdateOrderStatusDto } from './dto/admin-order.dto';
-@Controller('admin')@UseGuards(AccessTokenGuard,RolesGuard)@Roles('ADMIN')
-export class AdminOrdersController{constructor(private readonly service:AdminOrdersService){}@Get('orders')orders(@Query()q:AdminOrderQueryDto){return this.service.orders(q)}@Get('orders/:id')order(@Param('id',ParseUUIDPipe)id:string){return this.service.order(id)}@Patch('orders/:id/status')status(@CurrentUser()u:AuthenticatedUser,@Param('id',ParseUUIDPipe)id:string,@Body()dto:UpdateOrderStatusDto){return this.service.changeStatus(u.id,id,dto.status)}@Post('orders/:id/refund')refund(@CurrentUser()u:AuthenticatedUser,@Param('id',ParseUUIDPipe)id:string,@Headers('idempotency-key')key:string|undefined,@Body()dto:RefundPaymentDto){return this.service.refund(u.id,id,key,dto)}@Get('payments')payments(@Query()q:AdminPaymentQueryDto){return this.service.payments(q)}@Get('payments/:id')payment(@Param('id',ParseUUIDPipe)id:string){return this.service.payment(id)}@Post('payments/:id/reconcile')reconcile(@CurrentUser()u:AuthenticatedUser,@Param('id',ParseUUIDPipe)id:string){return this.service.reconcile(u.id,id)}}
+import {
+  Body,
+  Controller,
+  Get,
+  Headers,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import type { AuthenticatedUser } from '../auth/auth.types';
+import { AdminOrdersService } from './admin-orders.service';
+import {
+  AdminOrderQueryDto,
+  AdminPaymentQueryDto,
+  RefundPaymentDto,
+  UpdateOrderStatusDto,
+} from './dto/admin-order.dto';
+@Controller('admin')
+@UseGuards(AccessTokenGuard, RolesGuard)
+@Roles('ADMIN')
+export class AdminOrdersController {
+  constructor(private readonly service: AdminOrdersService) {}
+  @Get('orders') orders(@Query() q: AdminOrderQueryDto) {
+    return this.service.orders(q);
+  }
+  @Get('orders/:id') order(@Param('id', ParseUUIDPipe) id: string) {
+    return this.service.order(id);
+  }
+  @Patch('orders/:id/status') status(
+    @CurrentUser() u: AuthenticatedUser,
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateOrderStatusDto,
+  ) {
+    return this.service.changeStatus(u.id, id, dto.status);
+  }
+  @Post('orders/:id/refund') refund(
+    @CurrentUser() u: AuthenticatedUser,
+    @Param('id', ParseUUIDPipe) id: string,
+    @Headers('idempotency-key') key: string | undefined,
+    @Body() dto: RefundPaymentDto,
+  ) {
+    return this.service.refund(u.id, id, key, dto);
+  }
+  @Get('payments') payments(@Query() q: AdminPaymentQueryDto) {
+    return this.service.payments(q);
+  }
+  @Get('payments/:id') payment(@Param('id', ParseUUIDPipe) id: string) {
+    return this.service.payment(id);
+  }
+  @Post('payments/:id/reconcile') reconcile(
+    @CurrentUser() u: AuthenticatedUser,
+    @Param('id', ParseUUIDPipe) id: string,
+  ) {
+    return this.service.reconcile(u.id, id);
+  }
+
+  @Post('refunds/:id/reconcile') reconcileRefund(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('id', ParseUUIDPipe) id: string,
+  ) {
+    return this.service.reconcileRefund(user.id, id);
+  }
+}

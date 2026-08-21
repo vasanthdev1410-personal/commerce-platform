@@ -69,6 +69,7 @@ export type PricingMode = (typeof PricingMode)[keyof typeof PricingMode]
 export const PaymentStatus = {
   PENDING: 'PENDING',
   AUTHORIZED: 'AUTHORIZED',
+  CAPTURED_REQUIRES_ACTION: 'CAPTURED_REQUIRES_ACTION',
   PAID: 'PAID',
   FAILED: 'FAILED',
   REFUNDED: 'REFUNDED',

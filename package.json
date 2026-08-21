@@ -6,6 +6,11 @@
   "engines": {
     "node": ">=24.0.0"
   },
+  "pnpm": {
+    "overrides": {
+      "deepmerge-ts": "8.0.0"
+    }
+  },
   "scripts": {
     "dev": "pnpm --parallel --filter @commerce/web --filter @commerce/api dev",
     "build": "pnpm --filter @commerce/shared build && pnpm --filter @commerce/web build && pnpm --filter @commerce/api build",

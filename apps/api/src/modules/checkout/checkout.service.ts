@@ -62,6 +62,7 @@ export class CheckoutService {
     );
     const shipping = await this.shipping.calculate(
       address.countryCode,
+      address.state,
       calculated.pricingMode,
       calculated.subtotalPaise,
     );
@@ -120,6 +121,7 @@ export class CheckoutService {
             );
             const shipping = await this.shipping.calculate(
               address.countryCode,
+              address.state,
               calculated.pricingMode,
               calculated.subtotalPaise,
               tx,
@@ -164,7 +166,7 @@ export class CheckoutService {
                 shippingAddressLine1: address.addressLine1,
                 shippingAddressLine2: address.addressLine2 ?? null,
                 shippingCity: address.city,
-                shippingState: address.state,
+                shippingState: taxes.buyerStateCode,
             shippingPostalCode: address.postalCode,
             shippingCountryCode: address.countryCode,
             shippingLatitude: address.latitude,
@@ -173,7 +175,7 @@ export class CheckoutService {
             shippingProviderPlaceId: address.providerPlaceId,
             shippingFormattedAddress: address.formattedAddress,
                 items: {
-                  create: calculated.items.map((line) => ({
+                  create: calculated.items.map((line, index) => ({
                     variantId: line.variantId,
                     productName: line.productName,
                     variantName: line.variantName,
@@ -181,6 +183,13 @@ export class CheckoutService {
                     quantity: line.quantity,
                     unitPricePaise: line.unitPricePaise,
                     totalPricePaise: line.lineTotalPaise,
+                    hsnCode: line.hsnCode,
+                    taxRateBasisPoints: line.rateBasisPoints,
+                    taxablePaise: taxes.lines[index].taxablePaise,
+                    taxPaise: taxes.lines[index].taxPaise,
+                    cgstPaise: taxes.lines[index].cgstPaise,
+                    sgstPaise: taxes.lines[index].sgstPaise,
+                    igstPaise: taxes.lines[index].igstPaise,
                   })),
                 },
                 inventoryReservations: {
@@ -287,6 +296,7 @@ export class CheckoutService {
         productName: v.product.name,
         variantName: v.name,
         sku: v.sku,
+        hsnCode: v.hsnCode,
         attributes: v.attributes,
         quantity: item.quantity,
         unitPricePaise,

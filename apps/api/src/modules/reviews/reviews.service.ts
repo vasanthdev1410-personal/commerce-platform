@@ -88,6 +88,11 @@ async own(userId: string, id: string) {
 }
 async update(userId: string, id: string, d: UpdateReviewDto) {
   return this.prisma.$transaction(async (tx) => {
+    const candidate = await tx.productReview.findFirst({
+      where: { id, userId, deletedAt: null },
+    });
+    if (!candidate) throw new NotFoundException('Review not found');
+    await this.lockProduct(candidate.productId, tx);
     const row = await tx.productReview.findFirst({
       where: { id, userId, deletedAt: null },
     });
@@ -109,6 +114,11 @@ async update(userId: string, id: string, d: UpdateReviewDto) {
 }
 async remove(userId: string, id: string) {
   return this.prisma.$transaction(async (tx) => {
+    const candidate = await tx.productReview.findFirst({
+      where: { id, userId, deletedAt: null },
+    });
+    if (!candidate) throw new NotFoundException('Review not found');
+    await this.lockProduct(candidate.productId, tx);
     const row = await tx.productReview.findFirst({
       where: { id, userId, deletedAt: null },
     });
@@ -201,13 +211,7 @@ async uploadAuth(userId: string, id: string, d: ReviewUploadDto) {
   );
 }
 async confirmMedia(userId: string, id: string, d: ConfirmReviewMediaDto) {
-  await this.ownerActive(userId, id);
-  if (
-    (await this.prisma.productReviewMedia.count({
-      where: { reviewId: id },
-    })) >= 5
-  )
-    throw new ConflictException('A review may contain at most 5 images');
+  const review = await this.ownerActive(userId, id);
   const file = await this.storage.getFile(d.fileId),
     prefix = `/reviews/${userId}/${id}/`;
   if (!file || !file.filePath?.startsWith(prefix) || !file.publicUrl)
@@ -220,18 +224,42 @@ async confirmMedia(userId: string, id: string, d: ConfirmReviewMediaDto) {
     file.contentLength > 8 * 1024 * 1024
   )
     throw new BadRequestException('Uploaded image metadata is invalid');
+  const mimeType = String(file.contentType);
+  const sizeBytes = Number(file.contentLength);
+  const publicUrl: string = file.publicUrl;
   try {
-    return await this.prisma.productReviewMedia.create({
-      data: {
-        reviewId: id,
-        imageKitFileId: d.fileId,
-        url: file.publicUrl,
-        mimeType: file.contentType!,
-        sizeBytes: file.contentLength,
-        sortOrder: d.sortOrder,
-        width: d.width,
-        height: d.height,
-      },
+    return await this.prisma.$transaction(async (tx) => {
+      await this.lockProduct(review.productId, tx);
+      const current = await tx.productReview.findFirst({
+        where: { id, userId, deletedAt: null },
+      });
+      if (!current) throw new NotFoundException('Review not found');
+      const mediaCount = await tx.productReviewMedia.count({
+        where: { reviewId: id },
+      });
+      if (mediaCount >= 5) {
+        throw new ConflictException('A review may contain at most 5 images');
+      }
+      const media = await tx.productReviewMedia.create({
+        data: {
+          reviewId: id,
+          imageKitFileId: d.fileId,
+          url: publicUrl,
+          mimeType,
+          sizeBytes,
+          sortOrder: d.sortOrder,
+          width: d.width,
+          height: d.height,
+        },
+      });
+      if (current.status === 'APPROVED') {
+        await tx.productReview.update({
+          where: { id },
+          data: { status: 'PENDING', moderationReason: null },
+        });
+        await this.rebuild(current.productId, tx);
+      }
+      return media;
     });
   } catch (e) {
     if (
@@ -255,7 +283,7 @@ async deleteMedia(userId: string, reviewId: string, mediaId: string) {
 private async ownerActive(userId: string, id: string) {
   const row = await this.prisma.productReview.findFirst({
     where: { id, userId, deletedAt: null },
-    select: { id: true },
+    select: { id: true, productId: true },
   });
   if (!row) throw new NotFoundException('Review not found');
   return row;
@@ -267,6 +295,11 @@ private async moderate(
   reason?: string,
 ) {
   return this.prisma.$transaction(async (tx) => {
+    const candidate = await tx.productReview.findFirst({
+      where: { id, deletedAt: null },
+    });
+    if (!candidate) throw new NotFoundException('Review not found');
+    await this.lockProduct(candidate.productId, tx);
     const row = await tx.productReview.findFirst({
       where: { id, deletedAt: null },
     });
@@ -288,6 +321,12 @@ private async moderate(
     );
     return updated;
   });
+}
+private async lockProduct(
+  productId: string,
+  tx: Prisma.TransactionClient,
+): Promise<void> {
+  await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${productId}))`;
 }
 private async rebuild(productId: string, tx: Prisma.TransactionClient) {
   const groups = await tx.productReview.groupBy({
@@ -407,4 +446,3 @@ return {
 };
 }
 }
-
