@@ -1,14 +1,31 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source('../');
 
 :root {
   color-scheme: light;
+  --color-bg: #fcfcfc;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f0ebe5;
+  --color-text: #2a2a2a;
+  --color-heading: #1a1a1a;
+  --color-muted: #67615b;
+  --color-border: #d4cfc7;
+  --color-accent: #8b7355;
+  --color-highlight: #c9956f;
+  --color-button-primary: #2a2a2a;
+  --color-success: #26734d;
+  --color-warning: #8a5a18;
+  --color-danger: #a13c3c;
+  --catalog-radius-sm: 0.625rem;
+  --catalog-radius-md: 0.875rem;
+  --catalog-radius-lg: 1rem;
 }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  color: #171717;
-  background: #fff;
+  color: var(--color-text);
+  background: var(--color-bg);
+  text-rendering: optimizeLegibility;
 }
 
 button,
@@ -26,25 +43,88 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
+::selection {
+  color: var(--color-heading);
+  background: var(--color-surface-secondary);
+}
+
 @layer components {
   .form-label {
     @apply mb-1 block text-sm font-medium text-neutral-800;
   }
 
   .form-input {
-    @apply w-full border border-neutral-400 bg-white px-3 py-2 text-neutral-950 outline-none placeholder:text-neutral-500 focus:border-black;
+    @apply w-full border bg-white px-3 py-2 text-neutral-950 outline-none placeholder:text-neutral-500;
+    min-height: 2.75rem;
+    border-color: var(--color-border);
+    border-radius: var(--catalog-radius-sm);
+  }
+
+  .form-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgb(139 115 85 / 14%);
   }
 
   .primary-button {
-    @apply inline-flex w-full items-center justify-center border border-black bg-black px-4 py-2 font-medium text-white hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex w-full items-center justify-center border px-4 py-2 font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+    min-height: 2.75rem;
+    border-color: var(--color-button-primary);
+    border-radius: var(--catalog-radius-sm);
+    background: var(--color-button-primary);
   }
 
   .secondary-button {
-    @apply inline-flex items-center justify-center border border-neutral-400 bg-white px-4 py-2 font-medium text-neutral-900 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex items-center justify-center border bg-white px-4 py-2 font-medium text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+    min-height: 2.75rem;
+    border-color: var(--color-border);
+    border-radius: var(--catalog-radius-sm);
   }
 }
 
-/* Temporary development UI: remove the former visual system while preserving layout and behavior. */
-[class*='rounded-'] { border-radius: 0 !important; }
-[class*='shadow'] { box-shadow: none !important; }
-[class*='animate-'] { animation: none !important; }
+.primary-button:hover {
+  background: #404040;
+}
+
+.secondary-button:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface-secondary);
+}
+
+.catalog-card,
+.catalog-panel,
+.catalog-state,
+.catalog-chip,
+.catalog-sheet {
+  border-radius: var(--catalog-radius-lg);
+}
+
+.catalog-card {
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.catalog-card img {
+  transition: transform 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalog-card:hover {
+    border-color: #b9ae9f;
+    box-shadow: 0 12px 30px rgb(42 42 42 / 8%);
+    transform: translateY(-2px);
+  }
+
+  .catalog-card:hover img {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
